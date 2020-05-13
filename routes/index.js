@@ -1,8 +1,30 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
+const path = require('path')
+const multer = require('multer')
+
 
 const UserController = require('../controllers/UserController')
 const AuthController = require('../controllers/AuthController')
+const PostController = require('../controllers/PostController')
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join("public", "posts"));
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  },
+});
+
+const upload = multer({ storage })
+
+
+// App homepage
+router.get('/home', function(req, res, next) {
+  console.log(req.session)
+  const { user } = req.session
+  res.render('index', { user: req.session.user })
+});
 
 router.get('/', (req, res) => {
   res.render('auth/login')
@@ -16,11 +38,8 @@ router.post('/users', UserController.store)
 router.get('/login', AuthController.create)
 router.post('/login', AuthController.store)
 
-// App homepage
-router.get('/home', function(req, res, next) {
-  console.log(req.session)
-  const { user } = req.session
-  res.render('index', { user: req.session.user })
-});
+// Publications routes
+router.get('/post', PostController.create)
+router.post('/post', upload.any(), PostController.store)
 
 module.exports = router

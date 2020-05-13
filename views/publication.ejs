@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publication</title>
+  <link rel='stylesheet' href='/css/style.css' />
+</head>
+<body>
+  <header>
+    <div class="container header">
+      <div id="logo">
+        <img src="/img/logo.png">
+      </div>
+      <div class="busca">
+        <form>
+          <input type="search" class="search" placeholder="buscar usuarios">
+        </form>
+      </div>
+      <nav>
+        <a href="http://">
+          <img src="/img/icons/home.svg">
+        </a>
+        <a href="">
+          <div class="avatar-content">
+            <img class="avatar" src="/img/avatar-example.png">
+            <b>nati.carolira</b>
+          </div>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container content">
+    <section class="card">
+      <h2>Create a post</h2>
+      <p>Upload an image you wish to post!</p>
+      <br>
+      <form action="/post" method="POST" enctype="multipart/form-data">
+        <label for="image">Select the image</label>
+        <input id="image" name="image" type="file">
+        <br>
+        <label for="description">Description</label>
+        <input id="description" name="description" type="text">
+        <br>
+        <button type="submit" class="btn btn-send">Post</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
