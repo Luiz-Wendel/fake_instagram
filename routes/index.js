@@ -1,21 +1,26 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 
 const UserController = require('../controllers/UserController')
+const AuthController = require('../controllers/AuthController')
 
 router.get('/', (req, res) => {
   res.render('auth/login')
 })
 
-router.get('/users', UserController.create);
-router.post('/users', UserController.store);
+// User registration
+router.get('/users', UserController.create)
+router.post('/users', UserController.store)
 
-router.get('/registro', function(req, res, next) {
-  res.render('auth/register');
-});
+// User authentication
+router.get('/login', AuthController.create)
+router.post('/login', AuthController.store)
 
+// App homepage
 router.get('/home', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  console.log(req.session)
+  const { user } = req.session
+  res.render('index', { user: req.session.user })
 });
 
-module.exports = router;
+module.exports = router
