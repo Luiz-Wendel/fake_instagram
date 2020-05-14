@@ -4,7 +4,8 @@ class Publication extends Model {
   static init(connection) {
     super.init({
       image: DataTypes.STRING,
-      description: DataTypes.STRING(500)
+      description: DataTypes.STRING(500),
+      created_at: DataTypes.DATE
     }, {
       sequelize: connection
     })

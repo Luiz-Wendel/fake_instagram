@@ -10,6 +10,7 @@ const auth = require('../middlewares/auth')
 const UserController = require('../controllers/UserController')
 const AuthController = require('../controllers/AuthController')
 const PostController = require('../controllers/PostController')
+const HomeController = require('../controllers/HomeController')
 
 // multer config
 const storage = multer.diskStorage({
@@ -25,9 +26,8 @@ const upload = multer({ storage })
 
 
 // App homepage
-router.get('/home', auth, function(req, res, next) {
-  res.render('index')
-});
+router.get('/home', auth, HomeController.index);
+router.get('/home/my_posts', auth, HomeController.myPosts);
 
 router.get('/', (req, res) => {
   res.render('auth/login')
