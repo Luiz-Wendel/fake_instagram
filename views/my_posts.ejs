@@ -53,12 +53,14 @@
                   <img src="/img/icons/heart.svg">
                   <b>35 likes</b>
                 </div>
-                <b>Postado no dia: <%= publication.created_at %></b>
+                <b>Postado no dia: <%= moment(publication.created_at).format('DD/MM/YYYY') %></b>
               </div>
               <div class="card-comments">
-                <p><b>ovinnyoliveira</b> Mano que incrivel</p>
-                <p><b>front.hendy</b> </p>
-                <p><b>verofefo</b> aff.. </p>
+                <% if (publication.comments.length > 0) { %>
+                  <% publication.comments.forEach(comment => { %>
+                    <p><b><%= comment.user.username %>:</b>&nbsp<%= comment.comment %></p>
+                  <% }) %>
+                <% } %>
               </div>
             
             </div>
