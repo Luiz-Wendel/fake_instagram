@@ -62,9 +62,9 @@
               </div>
             
             </div>
-            <form class="form-comments" action="">
-              <input type="text" placeholder="Adicione um comentário...">
-              <button>Publicar</button>
+            <form class="form-comments" action="/comment/<%= publication.id %>" method="POST">
+              <input id="comment" name="comment" type="text" placeholder="Adicione um comentário..." required>
+              <button type="submit">Comment</button>
             </form>
           </div>
         <% }) %>

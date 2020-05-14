@@ -34,39 +34,42 @@
 
       <% if (typeof publications !== 'undefined') { %>
         <% publications.forEach(publication => { %>
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <img class="avatar" src="/img/avatar-example.png">
-                <b><%= publication.user.username %></b>
-              </div>
-                <img src="/img/icons/more-vertical.svg">
-            </div>
-            <div class="card-img">
-              <img src="<%= publication.image %>">
-            </div>
-            <div class="card-body">
-              <p><%= publication.description %></p>
-              <hr>
-              <div class="card-itens">
-                <div class="likes">
-                  <img src="/img/icons/heart.svg">
-                  <b>35 likes</b>
+          <span id="post_<%= publication.id %>">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <img class="avatar" src="/img/avatar-example.png">
+                  <b><%= publication.user.username %></b>
                 </div>
-                <b>Postado no dia: <%= moment(publication.created_at).format('DD/MM/YYYY') %></b>
+                  <img src="/img/icons/more-vertical.svg">
               </div>
-              <div class="card-comments">
-                <p><b>ovinnyoliveira</b> Mano que incrivel</p>
-                <p><b>front.hendy</b> </p>
-                <p><b>verofefo</b> aff.. </p>
+              <div class="card-img">
+                <img src="<%= publication.image %>">
               </div>
-            
+              <div class="card-body">
+                <p><%= publication.description %></p>
+                <hr>
+                <div class="card-itens">
+                  <div class="likes">
+                    <img src="/img/icons/heart.svg">
+                    <b>35 likes</b>
+                  </div>
+                  <b>Postado no dia: <%= moment(publication.created_at).format('DD/MM/YYYY') %></b>
+                </div>
+                <div class="card-comments">
+                  <p><b>ovinnyoliveira</b> Mano que incrivel</p>
+                  <p><b>front.hendy</b> </p>
+                  <p><b>verofefo</b> aff.. </p>
+                </div>
+              
+              </div>
+
+              <form class="form-comments" action="/comment/<%= publication.id %>" method="POST">
+                <input id="comment" name="comment" type="text" placeholder="Adicione um comentário..." required>
+                <button type="submit">Comment</button>
+              </form>
             </div>
-            <form class="form-comments" action="">
-              <input type="text" placeholder="Adicione um comentário...">
-              <button>Publicar</button>
-            </form>
-          </div>
+          </span>
         <% }) %>
       <% } else { %>
         <div class="card">

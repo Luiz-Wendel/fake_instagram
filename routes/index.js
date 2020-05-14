@@ -11,6 +11,7 @@ const UserController = require('../controllers/UserController')
 const AuthController = require('../controllers/AuthController')
 const PostController = require('../controllers/PostController')
 const HomeController = require('../controllers/HomeController')
+const CommentController = require('../controllers/CommentController')
 
 // multer config
 const storage = multer.diskStorage({
@@ -44,5 +45,8 @@ router.post('/login', AuthController.store)
 // Publications routes
 router.get('/post', auth, PostController.create)
 router.post('/post', auth, upload.any(), PostController.store)
+
+// Comments
+router.post('/comment/:id', auth, CommentController.store)
 
 module.exports = router
