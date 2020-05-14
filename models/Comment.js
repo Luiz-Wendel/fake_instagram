@@ -1,10 +1,9 @@
 const { Model, DataTypes } = require('sequelize')
 
-class Publication extends Model {
+class Comment extends Model {
   static init(connection) {
     super.init({
-      image: DataTypes.STRING,
-      description: DataTypes.STRING(500),
+      comment: DataTypes.STRING(500),
       created_at: DataTypes.DATE
     }, {
       sequelize: connection
@@ -17,11 +16,11 @@ class Publication extends Model {
       as: 'user'
     })
 
-    this.hasMany(models.Comment, {
+    this.belongsTo(models.Publication, {
       foreignKey: 'publication_id',
-      as: 'comments'
+      as: 'publication'
     })
   }
 }
 
-module.exports = Publication
+module.exports = Comment

@@ -18,6 +18,11 @@ class User extends Model {
       foreignKey: 'user_id',
       as: 'publications'
     })
+
+    this.hasMany(models.Comment, {
+      foreignKey: 'user_id',
+      as: 'comments'
+    })
   }
 }
 
